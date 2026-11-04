@@ -111,3 +111,9 @@ memos builds on [three.js](https://threejs.org), [Spark](https://sparkjs.dev), [
 [SpacetimeDB](https://spacetimedb.com), [NVIDIA ViPE](https://github.com/nv-tlabs/vipe),
 [gsplat](https://github.com/nerfstudio-project/gsplat) and the
 [Meta Wearables Device Access Toolkit](https://wearables.developer.meta.com).
+
+## License
+
+memos is released under the [MIT License](LICENSE). The iPhone app downloads the Meta Wearables Device Access Toolkit
+through Swift Package Manager; that SDK is not part of this repository and is covered by the
+[Meta Wearables Developer Terms](https://wearables.developer.meta.com/terms).

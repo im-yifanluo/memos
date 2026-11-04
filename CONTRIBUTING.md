@@ -1,7 +1,8 @@
 # Contributing to memos
 
 Thanks for helping. This page covers how the repository is organized, how to get set up, the checks a pull request has
-to pass, and the conventions that keep the parts compatible with each other.
+to pass, and the conventions that keep the parts compatible with each other. By contributing, you agree that your
+contributions are licensed under the [MIT License](LICENSE).
 
 ## How the repository is organized
 

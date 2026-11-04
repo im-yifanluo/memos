@@ -1,6 +1,7 @@
 {
   "name": "memory-replay",
   "private": true,
+  "license": "MIT",
   "version": "0.1.0",
   "description": "Relive memories: Meta glasses video -> 4D scene -> multiplayer WebXR on Quest 3S and phones",
   "type": "module",
