@@ -370,8 +370,8 @@ nothing needs to be running. They need the `spacetime` CLI on `PATH`, or its pat
   and `worker:env:local` writes a private environment file. Needs `python3` (or `PYTHON`).
   `npm run test:connections -- --full` also runs the multiplayer and party suites against the same temporary database.
 - `npm run test:upload-api` (`tests/integration/upload-api.ts`): the Node upload API with local storage: accounts and
-  six-digit passwords before and after a restart, an upload of `tests/fixtures/plant.mp4` with identical bytes back,
-  one row on repeated completion, a live viewer subscription and isolation between accounts.
+  six-digit passwords before and after a restart, an upload of `tests/fixtures/test-pattern.mp4` with identical bytes
+  back, one row on repeated completion, a live viewer subscription and isolation between accounts.
   `UPLOAD_TEST_R2=1 npm run test:upload-api` runs the Cloudflare Worker instead, in `wrangler dev --local` with local
   R2 (`server/upload/deploy/cloudflare/wrangler.jsonc`), and adds the GPU worker bridge: the Python publisher's 91 MiB
   multipart asset and the `ready` status over WebSocket (needs `python3`). `UPLOAD_TEST_WORKER_DIR=<hosting checkout>`
@@ -384,8 +384,8 @@ With SpacetimeDB and the module, `upload:local` and the web app running:
 - `npm run test:video -- <clip> <seconds>` (`tests/integration/video.ts`): uploads a real clip through the app's `/api`
   as a test upload (`pipeline: false`), finds its row with an independent query, downloads it and compares the SHA-256,
   repeats the completion, and prints a `/capture.html?request=…` link to watch it. `APP_ORIGIN` (default
-  `http://127.0.0.1:5173`) points it at another address. `tests/fixtures/plant.mp4` is a small non-private clip of about
-  9 s: `npm run test:video -- tests/fixtures/plant.mp4 9`.
+  `http://127.0.0.1:5173`) points it at another address. `tests/fixtures/test-pattern.mp4` is a 9-second test
+  clip: `npm run test:video -- tests/fixtures/test-pattern.mp4 9`.
 - `npm run connections:check -- <upload API URL>` (`scripts/dev/check-connections.mjs`): not a test but a read-only
   report from a running upload API (default `UPLOAD_URL`, or `http://127.0.0.1:8788`). It checks the expected tables
   over SQL, prints the configured I3, I4, I5 and I7 endpoints, and exits with 1 when a read fails. It writes nothing,
@@ -418,8 +418,8 @@ These compile the iPhone app's real Swift sources in `apps/ios/SceneCapture/` wi
 The suites in `tests/e2e/` default to the hosted site's settings in `apps/web/.env.hosted`. They leave labelled test
 accounts and memories on the service they test.
 
-- `npx tsx tests/e2e/upload-public.ts https://<upload API origin>`: a real upload of `tests/fixtures/plant.mp4` to a
-  deployed upload API, which must use the hosted site's database: account creation and restore, an upload with
+- `npx tsx tests/e2e/upload-public.ts https://<upload API origin>`: a real upload of `tests/fixtures/test-pattern.mp4`
+  to a deployed upload API, which must use the hosted site's database: account creation and restore, an upload with
   processing off, duplicate prevention, the exact bytes and a range request back, and the same row over the WebSocket.
   It keeps its resumable test account in `data/public-upload-test.private.json` (mode 0600) and writes
   `data/public-upload-verification.json`.

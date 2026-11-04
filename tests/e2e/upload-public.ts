@@ -48,20 +48,24 @@ assert.equal((await call("/api/account", { personalKey: account.personalKey })).
 assert.equal((await call("/api/account", undefined, account.personalKey)).provider, "key");
 await call("/api/memories", undefined, "invalid", 401);
 console.log("PASS public HTTPS and account create/restore/get; same website database and password format");
-const bytes = await readFile("tests/fixtures/plant.mp4");
+const sha = (data: Buffer) => createHash("sha256").update(data).digest("hex");
+const bytes = await readFile("tests/fixtures/test-pattern.mp4");
+// A saved upload of a different fixture can't be checked against this one, so start a new upload.
+if (state.fixtureSha256 !== sha(bytes)) state.prepared = state.completed = undefined;
 if (!state.prepared || (!state.completed && state.prepared.receiptExpiresAt <= Date.now())) {
   state.prepared = await call(
     "/api/uploads/presign",
     {
-      name: "plant.mp4",
+      name: "test-pattern.mp4",
       type: "video/mp4",
       size: bytes.length,
-      title: "[API verification] Sample plant video",
-      durationSec: 5,
+      title: "[API verification] Test pattern video",
+      durationSec: 9,
       pipeline: false,
     },
     account.personalKey,
   );
+  state.fixtureSha256 = sha(bytes);
   state.uploaded = false;
   await save();
 }
@@ -90,7 +94,6 @@ assert.equal(list.memories.filter((row: any) => row.requestId === state.prepared
 assert.equal(completed.memory.pipelineIdentity, account.identity);
 const download = await fetch(completed.memory.sourceUrl, { signal: AbortSignal.timeout(60000) });
 assert.equal(download.status, 200);
-const sha = (data: Buffer) => createHash("sha256").update(data).digest("hex");
 assert.equal(sha(Buffer.from(await download.arrayBuffer())), sha(bytes));
 const range = await fetch(completed.memory.sourceUrl, { headers: { Range: "bytes=0-1023" } });
 assert.equal(range.status, 206);

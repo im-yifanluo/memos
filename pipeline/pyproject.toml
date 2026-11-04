@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=64"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,6 +7,7 @@ name = "memreplay"
 version = "0.2.0"
 description = "Glasses video -> layered 4D scene (background splat + dynamic objects + tracks) -> memory.json"
 requires-python = ">=3.10"
+license = "MIT"
 dependencies = [
   "numpy",
   "OpenEXR>=3.3",

@@ -1,7 +1,8 @@
 # Contributing to memos
 
 Thanks for helping. This page covers how the repository is organized, how to get set up, the checks a pull request has
-to pass, and the conventions that keep the parts compatible with each other.
+to pass, and the conventions that keep the parts compatible with each other. By contributing, you agree that your
+contributions are licensed under the [MIT License](LICENSE).
 
 ## How the repository is organized
 
@@ -77,7 +78,7 @@ git config blame.ignoreRevsFile .git-blame-ignore-revs
   `python docs/architecture/make_arch.py`.
 - **No large media in git.** `.ply`, `.spz`, `.splat`, `.glb`, `.mp4` and `.mov` files go to object storage or stay in
   git-ignored folders such as `data/` and `apps/web/public/memories/`. The only exceptions are the small test clip
-  `tests/fixtures/plant.mp4` and `apps/web/public/mock/`.
+  `tests/fixtures/test-pattern.mp4` and `apps/web/public/mock/`.
 - **SpacetimeDB module code is deterministic.** No `Math.random()` or `Date.now()` in `server/spacetime/`; use
   `ctx.random` and `ctx.timestamp`. Names are snake_case on the wire and in SQL, camelCase in TypeScript.
 - **No secrets in the repository.** `.env` files are git-ignored, except the `.env.example` templates and

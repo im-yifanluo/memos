@@ -606,10 +606,10 @@ These are server-side settings: never put any of them in a `VITE_*` variable. Th
   `npx vitest run --project upload`.
 - **`npm run test:upload-api`** ([`tests/integration/upload-api.ts`](../tests/integration/upload-api.ts)) starts an
   isolated in-memory SpacetimeDB on a free port, publishes the module and starts the real Node entry point on local
-  disk. It creates and restores accounts, uploads `tests/fixtures/plant.mp4` as a test upload, restarts the API between
-  the PUT and the completion, and checks for one row, identical downloaded bytes, byte ranges, the row arriving over a
-  WebSocket subscription, cross-account rejections and the promotion of a token identity. It cleans up after itself and
-  never touches Maincloud or a GPU. It needs the `spacetime` CLI (`SPACETIME_BIN` sets its path). Options:
+  disk. It creates and restores accounts, uploads `tests/fixtures/test-pattern.mp4` as a test upload, restarts the API
+  between the PUT and the completion, and checks for one row, identical downloaded bytes, byte ranges, the row arriving
+  over a WebSocket subscription, cross-account rejections and the promotion of a token identity. It cleans up after
+  itself and never touches Maincloud or a GPU. It needs the `spacetime` CLI (`SPACETIME_BIN` sets its path). Options:
   - `UPLOAD_TEST_R2=1` runs the standalone Cloudflare Worker instead (`wrangler dev --local`, with local R2), and adds
     the worker bridge: worker authentication, the real Python multipart publisher with a 91 MiB file, and the `ready`
     status over WebSocket. It needs `python3`.
@@ -621,7 +621,7 @@ These are server-side settings: never put any of them in a `VITE_*` variable. Th
   makes a real upload to a deployed API. It first checks that the API's `server` and `database` match
   [`apps/web/.env.hosted`](../apps/web/.env.hosted) and that no worker is configured. Then it writes to the target
   service: a test account named "Memos upload verification" (a registered profile and a password), the fixture video in
-  storage and one stored-only memory row titled "[API verification] Sample plant video". It downloads the bytes back,
+  storage and one stored-only memory row titled "[API verification] Test pattern video". It downloads the bytes back,
   checks byte ranges and finds the same row over a WebSocket. Locally it keeps the test account's credentials and its
   progress in `data/public-upload-test.private.json` (mode 0600), so a rerun reuses the same account and upload instead
   of adding new ones, and it writes a summary without credentials to `data/public-upload-verification.json`.

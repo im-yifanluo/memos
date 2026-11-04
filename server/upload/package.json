@@ -2,6 +2,7 @@
   "name": "@memreplay/upload",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "description": "Upload API: signed video uploads, six-digit account passwords and scene publishing, on Node or Cloudflare Workers",
   "scripts": {

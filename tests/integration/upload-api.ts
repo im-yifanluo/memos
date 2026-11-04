@@ -235,12 +235,12 @@ try {
   });
   assert.equal(viewer.db.profile.identity.find(viewer.identity!)?.displayName, "Phone API test");
   assert.equal(viewer.db.profile.identity.find(viewer.identity!)?.provider, "key");
-  const bytes = await readFile(join(repo, "tests/fixtures/plant.mp4"));
+  const bytes = await readFile(join(repo, "tests/fixtures/test-pattern.mp4"));
   const sha = (data: Buffer) => createHash("sha256").update(data).digest("hex");
   const prepared = await call(
     "/api/uploads/presign",
     {
-      name: "plant.mp4",
+      name: "test-pattern.mp4",
       type: "video/mp4",
       size: bytes.length,
       title: "[API test] MP4 transport fixture",
@@ -310,7 +310,7 @@ try {
     const job = await call(
       "/api/uploads/presign",
       {
-        name: "plant.mp4",
+        name: "test-pattern.mp4",
         type: "video/mp4",
         size: bytes.length,
         title: "[Synthetic worker test] transport only",
