@@ -83,7 +83,7 @@ With the services running, check any clip from the command line, giving its dura
 
 ```bash
 npm run test:video -- /path/to/video.mp4 DURATION_SECONDS
-npm run test:video -- tests/fixtures/plant.mp4 9     # the repository's small test clip
+npm run test:video -- tests/fixtures/test-pattern.mp4 9     # the repository's small test clip
 ```
 
 [tests/integration/video.ts](../tests/integration/video.ts) mints a fresh test identity, uploads the bytes as a test upload (`"pipeline": false`), confirms the row through an independent authenticated query (status `uploaded`, assigned to the test identity, so the worker never takes it), downloads the row's source URL and compares size and SHA-256 with the original, then repeats the confirmation and checks that it returns the same row. It prints four PASS lines.

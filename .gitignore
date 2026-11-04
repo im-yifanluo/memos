@@ -17,7 +17,7 @@ data/
 *.mov
 *.glb
 !apps/web/public/mock/**
-!tests/fixtures/plant.mp4
+!tests/fixtures/test-pattern.mp4
 
 # Scenes and fixtures copied or generated for local viewing
 apps/web/public/memories/
